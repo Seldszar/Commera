@@ -102,12 +102,17 @@ func main() {
 			Name:  "output",
 			Value: "output.json",
 		},
+		&cli.IntFlag{
+			Name:  "delay",
+			Value: 1000,
+		},
 	}
 
 	app.Action = func(ctx *cli.Context) error {
 		clientID := ctx.String("client_id")
 		videoID := ctx.String("video_id")
 		output := ctx.String("output")
+		delay := ctx.Int("delay")
 
 		var after string
 		var history []any
@@ -135,7 +140,7 @@ func main() {
 				break
 			}
 
-			time.Sleep(time.Second)
+			time.Sleep(time.Duration(delay) * time.Millisecond)
 		}
 
 		file, err := os.OpenFile(output, os.O_CREATE|os.O_TRUNC, os.ModePerm)
