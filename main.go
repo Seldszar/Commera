@@ -109,8 +109,8 @@ func main() {
 	}
 
 	app.Action = func(ctx *cli.Context) error {
-		clientID := ctx.String("client_id")
-		videoID := ctx.String("video_id")
+		clientID := ctx.String("client-id")
+		videoID := ctx.String("video-id")
 		output := ctx.String("output")
 		delay := ctx.Int("delay")
 
